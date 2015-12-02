@@ -19,6 +19,8 @@ public class Slotmachine extends Applet
 	Button buy;
 	Button Play;
 	boolean start;
+	boolean win;
+	boolean bigwin;
 	
 	public void init()
 	{
@@ -40,6 +42,16 @@ public class Slotmachine extends Applet
 	{
 		slots(g);
 		g.drawString(""+credit, 60,120);
+		if(bigwin==true)
+		{
+		g.drawString("JACKPOT! +20 POINTS!", 40, 140);
+		bigwin=false;
+		}
+		if(win==true)
+		{
+		g.drawString("congratulations! +5 points.", 40, 140);
+		win=false;
+		}
 	}
 	class Listen1 implements ActionListener
 	{
@@ -86,11 +98,13 @@ public class Slotmachine extends Applet
     	{
     		sound2.play();
     		credit=credit+5;
+    		win=true;
     	}
     	if (number1==number2 && number1==number3&&start==true)
     	{
     		sound2.play();
     		credit=credit+20;
+    		bigwin = true;
     	}
 		if (credit<1)
 		{
